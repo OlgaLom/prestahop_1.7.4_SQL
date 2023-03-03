@@ -17,5 +17,5 @@ An SQL query to export all products with all data like, image, attributes, featu
 
 <strong>NOTE</strong>
 
--> Dont forget to check the <em>lang ID<em> base on your e-shop
--> Dont forget to remove the <em>LIMIT</em> option at the end of the query
+-> Dont forget to check the <em>lang ID<em> base on your e-shop <br>
+-> Dont forget to remove the <em>LIMIT</em> option at the end of the query <br>
