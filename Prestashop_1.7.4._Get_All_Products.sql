@@ -4,7 +4,7 @@ p.`reference`  AS `reference`,
 pl.`name` AS `product_name`,
 GROUP_CONCAT(DISTINCT  cl.`name` SEPARATOR ', ') AS `categories`,
 sa.`active`  AS `active`,
-sav.`quantity`  AS `sav_quantity`,
+sav.physical_quantity AS `quantity`,
 p.`price` AS `Base_price`,
 p.`wholesale_price` AS `Sale_price`,
 atrr.`ean13` AS `Barcode`,
@@ -58,7 +58,6 @@ INNER JOIN `ps_category_product` cp ON p.`id_product` = cp.`id_product`  -- Prod
 INNER JOIN `ps_category_lang` cl ON cp.`id_category` = cl.`id_category` -- Product Categories Name
 
 LEFT JOIN `ps_product_shop` sa ON (p.`id_product` = sa.`id_product` AND sa.`id_shop` = 1) -- Product Status
-LEFT JOIN `ps_stock_available` sav ON (sav.`id_product` = p.`id_product` AND sav.`id_product_attribute` = 0 AND sav.`id_shop` = 1  AND sav.`id_shop_group` = 0 ) -- Product Quantity
 
 LEFT JOIN `ps_product_attribute` atrr ON atrr.`id_product` = p.`id_product` -- Product EAN 
 -- Product Image 
@@ -74,6 +73,8 @@ LEFT JOIN `ps_feature_lang` lf ON fp.`id_feature` = lf.`id_feature`
 LEFT JOIN `ps_feature_value_lang` fv ON fp.`id_feature_value` = fv.`id_feature_value`
 -- Product Brand/Manufacturer
 LEFT JOIN `ps_manufacturer` m ON p.`id_manufacturer` = m.`id_manufacturer`
+
+LEFT JOIN `ps_stock_available` sav ON  pac.id_product_attribute = sav.id_product_attribute -- Product Quantity
 
 -- Choose info only from lang = 1. 
 WHERE pl.`id_lang` = 1 AND cl.`id_lang` = 1 AND pal.`id_lang` = 1 
