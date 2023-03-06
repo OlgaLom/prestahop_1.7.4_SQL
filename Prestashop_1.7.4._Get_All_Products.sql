@@ -4,7 +4,7 @@ p.`reference`  AS `reference`,
 pl.`name` AS `product_name`,
 GROUP_CONCAT(DISTINCT  cl.`name` SEPARATOR ', ') AS `categories`,
 sa.`active`  AS `active`,
-sav.physical_quantity AS `quantity`,
+sav.`physical_quantity` AS `quantity`,
 p.`price` AS `Base_price`,
 p.`wholesale_price` AS `Sale_price`,
 atrr.`ean13` AS `Barcode`,
@@ -74,7 +74,7 @@ LEFT JOIN `ps_feature_value_lang` fv ON fp.`id_feature_value` = fv.`id_feature_v
 -- Product Brand/Manufacturer
 LEFT JOIN `ps_manufacturer` m ON p.`id_manufacturer` = m.`id_manufacturer`
 
-LEFT JOIN `ps_stock_available` sav ON  pac.id_product_attribute = sav.id_product_attribute -- Product Quantity
+LEFT JOIN `ps_stock_available` sav ON  pac.`id_product_attribute` = sav.`id_product_attribute` -- Product Quantity
 
 -- Choose info only from lang = 1. 
 WHERE pl.`id_lang` = 1 AND cl.`id_lang` = 1 AND pal.`id_lang` = 1 
